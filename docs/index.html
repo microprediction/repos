@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>the microprediction stack</title>
+  <meta name="description" content="One clickable map of the microprediction repos: cores, the applications built on them, and the outside packages they play well with." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="microprediction repos" />
+  <meta property="og:title" content="The microprediction stack" />
+  <meta property="og:description" content="One clickable map of the microprediction repos and how they fit together." />
+  <meta property="og:url" content="https://repos.microprediction.org/" />
+  <link rel="stylesheet" href="./academic.css" />
+  <style>
+    .map-wrap { margin: 26px 0; }
+    svg.repo-map { width: 100%; height: auto; display: block; }
+    .node rect { fill: #ece9ff; stroke: #4a3aff; stroke-width: 1.5; rx: 10; cursor: pointer; }
+    .node.core rect { fill: #4a3aff; }
+    .node.core text { fill: #fff; }
+    .node.hub rect { fill: #2b2350; stroke: #2b2350; }
+    .node.hub text { fill: #fff; }
+    .node.ext rect { fill: #f4f4f4; stroke: #9a9a9a; stroke-dasharray: 5 4; stroke-width: 1.2; }
+    .node.ext text { fill: #555; }
+    .node text { font: 600 15px system-ui, sans-serif; fill: #2b2350; text-anchor: middle; pointer-events: none; }
+    .node text.sub { font-weight: 400; font-size: 11.5px; opacity: 0.75; }
+    .edge { stroke: #4a3aff; stroke-width: 2; fill: none; marker-end: url(#arr); }
+    .edge.plays { stroke: #9a9a9a; stroke-width: 1.6; stroke-dasharray: 6 5; marker-end: none; }
+    .edge-label { font: italic 11.5px system-ui, sans-serif; fill: #777; text-anchor: middle; }
+    .node:hover rect { filter: brightness(1.08); stroke-width: 2.5; }
+    svg.dimmed .edge, svg.dimmed .node { opacity: 0.18; transition: opacity .15s; }
+    svg.dimmed .edge.lit, svg.dimmed .node.lit { opacity: 1; }
+    .legend { display: flex; gap: 26px; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted); margin: 6px 0 0; align-items: center; }
+    .legend svg { vertical-align: middle; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a class="brand" href="/">repos</a>
+      <nav>
+        <a href="https://www.microprediction.org/">microprediction.org</a>
+        <a href="https://github.com/microprediction">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>The microprediction stack</h1>
+    <p class="subtitle">One map: what builds on what, and what plays well with what.</p>
+
+    <p class="lead">Cores are few and stable; applications multiply, so they get their own
+      package. Click any block to visit it. Solid arrows mean <em>builds on</em> (the lower
+      package does the numerics); dashed edges mean <em>plays well with</em> an outside
+      package. Hover a block to see only its connections.</p>
+
+    <div class="map-wrap">
+    <svg class="repo-map" id="map" viewBox="0 0 1000 640" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a3aff"/>
+        </marker>
+      </defs>
+
+      <!-- edges: builds on -->
+      <path class="edge" data-n="timemachines,skaters" d="M 170 240 L 170 351"/>
+      <path class="edge" data-n="winning,thurstone"    d="M 420 240 L 420 351"/>
+      <path class="edge" data-n="allocation,thurstone" d="M 610 240 C 560 290, 500 310, 448 349"/>
+      <path class="edge" data-n="allocation,precise"   d="M 655 240 L 662 351"/>
+      <path class="edge" data-n="schur,precise"        d="M 860 240 C 820 290, 750 310, 700 349"/>
+      <path class="edge" data-n="precise,skaters"      d="M 590 380 C 450 330, 330 330, 252 372"/>
+      <text class="edge-label" x="420" y="330">skaters run inside precise</text>
+
+      <!-- edges: the live network consumes the family -->
+      <path class="edge" data-n="microprediction,skaters"  d="M 430 96 C 260 130, 180 220, 168 351"/>
+      <path class="edge" data-n="microprediction,precise"  d="M 560 96 C 720 130, 700 220, 668 351"/>
+      <path class="edge" data-n="microprediction,humpday"  d="M 575 80 C 800 90, 880 200, 898 351"/>
+
+      <!-- edges: plays well with -->
+      <path class="edge plays" data-n="skaters,river"    d="M 170 409 L 170 516"/>
+      <text class="edge-label" x="216" y="468">ice-skaters</text>
+      <path class="edge plays" data-n="precise,sklearn"  d="M 680 409 L 706 516"/>
+      <path class="edge plays" data-n="precise,skfolio"  d="M 620 409 L 560 516"/>
+      <path class="edge plays" data-n="schur,skfolio"    d="M 890 240 C 950 350, 800 470, 600 528"/>
+      <path class="edge plays" data-n="allocation,skfolio" d="M 600 240 C 520 330, 500 430, 528 514"/>
+      <path class="edge plays" data-n="allocation,river"   d="M 545 226 C 330 260, 210 400, 178 514"/>
+      <path class="edge plays" data-n="humpday,optuna"     d="M 900 409 L 900 516"/>
+
+      <!-- hub -->
+      <g class="node hub" data-n="microprediction">
+        <a href="https://www.microprediction.org/">
+          <rect x="410" y="42" width="180" height="58"/>
+          <text x="500" y="66">microprediction</text>
+          <text class="sub" x="500" y="86">the live prediction network</text>
+        </a>
+      </g>
+
+      <!-- applications row -->
+      <g class="node" data-n="timemachines">
+        <a href="https://timemachines.microprediction.org/">
+          <rect x="90" y="182" width="160" height="58"/>
+          <text x="170" y="206">timemachines</text>
+          <text class="sub" x="170" y="226">streaming anomalies</text>
+        </a>
+      </g>
+      <g class="node" data-n="winning">
+        <a href="https://winning.microprediction.org/">
+          <rect x="340" y="182" width="160" height="58"/>
+          <text x="420" y="206">winning</text>
+          <text class="sub" x="420" y="226">rating systems</text>
+        </a>
+      </g>
+      <g class="node" data-n="allocation">
+        <a href="https://github.com/microprediction/allocation">
+          <rect x="550" y="182" width="160" height="58"/>
+          <text x="630" y="206">allocation</text>
+          <text class="sub" x="630" y="226">streaming portfolios</text>
+        </a>
+      </g>
+      <g class="node" data-n="schur">
+        <a href="https://schur.microprediction.org/">
+          <rect x="780" y="182" width="160" height="58"/>
+          <text x="860" y="206">schur</text>
+          <text class="sub" x="860" y="226">complementary portfolios</text>
+        </a>
+      </g>
+
+      <!-- cores row -->
+      <g class="node core" data-n="skaters">
+        <a href="https://skaters.microprediction.org/">
+          <rect x="90" y="352" width="160" height="58"/>
+          <text x="170" y="376">skaters</text>
+          <text class="sub" x="170" y="396">distributional forecasting</text>
+        </a>
+      </g>
+      <g class="node core" data-n="thurstone">
+        <a href="https://thurstone.microprediction.org/">
+          <rect x="340" y="352" width="160" height="58"/>
+          <text x="420" y="376">thurstone</text>
+          <text class="sub" x="420" y="396">lattice order statistics</text>
+        </a>
+      </g>
+      <g class="node core" data-n="precise">
+        <a href="https://github.com/microprediction/precise">
+          <rect x="565" y="352" width="160" height="58"/>
+          <text x="645" y="376">precise</text>
+          <text class="sub" x="645" y="396">online covariance</text>
+        </a>
+      </g>
+      <g class="node core" data-n="humpday">
+        <a href="https://github.com/microprediction/humpday">
+          <rect x="820" y="352" width="160" height="58"/>
+          <text x="900" y="376">humpday</text>
+          <text class="sub" x="900" y="396">black-box optimization</text>
+        </a>
+      </g>
+
+      <!-- externals row -->
+      <g class="node ext" data-n="river">
+        <a href="https://riverml.xyz/">
+          <rect x="95" y="518" width="150" height="46"/>
+          <text x="170" y="538">river</text>
+          <text class="sub" x="170" y="555">online ML</text>
+        </a>
+      </g>
+      <g class="node ext" data-n="skfolio">
+        <a href="https://skfolio.org/">
+          <rect x="465" y="518" width="150" height="46"/>
+          <text x="540" y="538">skfolio</text>
+          <text class="sub" x="540" y="555">portfolio construction</text>
+        </a>
+      </g>
+      <g class="node ext" data-n="sklearn">
+        <a href="https://scikit-learn.org/">
+          <rect x="640" y="518" width="150" height="46"/>
+          <text x="715" y="538">scikit-learn</text>
+          <text class="sub" x="715" y="555">estimator API</text>
+        </a>
+      </g>
+      <g class="node ext" data-n="optuna">
+        <a href="https://optuna.org/">
+          <rect x="825" y="518" width="150" height="46"/>
+          <text x="900" y="538">optuna &middot; nevergrad</text>
+          <text class="sub" x="900" y="555">wrapped &amp; benchmarked</text>
+        </a>
+      </g>
+    </svg>
+    </div>
+
+    <div class="legend">
+      <span><svg width="34" height="10"><line x1="0" y1="5" x2="26" y2="5" stroke="#4a3aff" stroke-width="2"/><path d="M 26 1 L 34 5 L 26 9 z" fill="#4a3aff"/></svg> builds on</span>
+      <span><svg width="34" height="10"><line x1="0" y1="5" x2="34" y2="5" stroke="#9a9a9a" stroke-width="1.6" stroke-dasharray="6 5"/></svg> plays well with</span>
+      <span><svg width="18" height="14"><rect x="1" y="1" width="16" height="12" rx="3" fill="#4a3aff"/></svg> core</span>
+      <span><svg width="18" height="14"><rect x="1" y="1" width="16" height="12" rx="3" fill="#ece9ff" stroke="#4a3aff"/></svg> application</span>
+      <span><svg width="18" height="14"><rect x="1" y="1" width="16" height="12" rx="3" fill="#f4f4f4" stroke="#9a9a9a" stroke-dasharray="4 3"/></svg> outside package</span>
+    </div>
+
+    <h2>The one-paragraph tour</h2>
+    <p>
+      Three cores do the numerics. <a href="https://skaters.microprediction.org/">skaters</a>
+      turns any stream into a full predictive distribution, one call at a time;
+      <a href="https://github.com/microprediction/precise">precise</a> keeps covariance
+      matrices current online; <a href="https://thurstone.microprediction.org/">thurstone</a>
+      computes exact order statistics of many contestants on a lattice. The applications sit
+      one level up: <a href="https://timemachines.microprediction.org/">timemachines</a>
+      (streaming anomaly detection with calibrated p-values, on skaters),
+      <a href="https://winning.microprediction.org/">winning</a> (rating systems, on
+      thurstone), <a href="https://schur.microprediction.org/">schur</a> and
+      <a href="https://github.com/microprediction/allocation">allocation</a> (portfolio
+      construction, on precise and thurstone).
+      <a href="https://github.com/microprediction/humpday">humpday</a> stands slightly apart:
+      it wraps and races the black-box optimizers (Optuna, Nevergrad, SciPy and friends) so
+      the rest of the family never argues about tuners. Everything is exercised, live, on the
+      <a href="https://www.microprediction.org/">microprediction</a> network, and the dashed
+      edges are the doors out: river for online ML pipelines
+      (<a href="https://github.com/microprediction/ice-skaters">ice-skaters</a>), skfolio and
+      scikit-learn for the portfolio and estimator ecosystems.
+    </p>
+  </main>
+
+  <footer>
+    <a href="https://github.com/microprediction">github.com/microprediction</a> &middot;
+    the family: <a href="https://skaters.microprediction.org">skaters</a>,
+    <a href="https://timemachines.microprediction.org">timemachines</a>,
+    <a href="https://thurstone.microprediction.org">thurstone</a>,
+    <a href="https://winning.microprediction.org">winning</a>,
+    <a href="https://schur.microprediction.org">schur</a>,
+    <a href="https://github.com/microprediction/precise">precise</a>,
+    <a href="https://github.com/microprediction/humpday">humpday</a>.
+  </footer>
+
+  <script>
+    const svg = document.getElementById('map');
+    const nodes = svg.querySelectorAll('.node');
+    const edges = svg.querySelectorAll('.edge');
+    nodes.forEach(node => {
+      const name = node.dataset.n;
+      node.addEventListener('mouseenter', () => {
+        svg.classList.add('dimmed');
+        node.classList.add('lit');
+        edges.forEach(e => {
+          const [a, b] = e.dataset.n.split(',');
+          if (a === name || b === name) {
+            e.classList.add('lit');
+            svg.querySelector(`.node[data-n="${a === name ? b : a}"]`)?.classList.add('lit');
+          }
+        });
+      });
+      node.addEventListener('mouseleave', () => {
+        svg.classList.remove('dimmed');
+        svg.querySelectorAll('.lit').forEach(el => el.classList.remove('lit'));
+      });
+    });
+  </script>
+</body>
+</html>
