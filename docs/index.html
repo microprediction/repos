@@ -17,6 +17,8 @@
     .node rect { fill: #ece9ff; stroke: #4a3aff; stroke-width: 1.5; rx: 10; cursor: pointer; }
     .node.core rect { fill: #4a3aff; }
     .node.core text { fill: #fff; }
+    .node.small rect { fill: #4a3aff; }
+    .node.small text { fill: #fff; font-size: 12.5px; }
     .node.ext rect { fill: #f4f4f4; stroke: #9a9a9a; stroke-dasharray: 5 4; stroke-width: 1.2; }
     .node.ext text { fill: #555; }
     .node text { font: 600 15px system-ui, sans-serif; fill: #2b2350; text-anchor: middle; pointer-events: none; }
@@ -65,8 +67,8 @@
       <text class="edge-label" x="435" y="298">skaters run inside precise</text>
 
       <!-- edges: plays well with -->
-      <path class="edge plays" data-n="skaters,river"    d="M 170 263 L 170 368"/>
-      <text class="edge-label" x="216" y="322">ice-skaters</text>
+      <path class="edge" data-n="skaters,ice-skaters" d="M 170 263 L 170 294"/>
+      <path class="edge plays" data-n="ice-skaters,river" d="M 170 334 L 170 368"/>
       <path class="edge plays" data-n="precise,sklearn"  d="M 715 263 L 752 368"/>
       
       <path class="edge plays" data-n="allocation,skfolio" d="M 585 98 L 585 368"/>
@@ -122,6 +124,13 @@
           <rect x="838" y="205" width="160" height="58"/>
           <text x="918" y="229">humpday</text>
           <text class="sub" x="918" y="249">black-box optimization</text>
+        </a>
+      </g>
+
+      <g class="node small" data-n="ice-skaters">
+        <a href="https://ice-skaters.microprediction.org/">
+          <rect x="118" y="298" width="104" height="34" rx="8"/>
+          <text x="170" y="320">ice-skaters</text>
         </a>
       </g>
 
