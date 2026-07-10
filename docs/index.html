@@ -17,8 +17,6 @@
     .node rect { fill: #ece9ff; stroke: #4a3aff; stroke-width: 1.5; rx: 10; cursor: pointer; }
     .node.core rect { fill: #4a3aff; }
     .node.core text { fill: #fff; }
-    .node.hub rect { fill: #2b2350; stroke: #2b2350; }
-    .node.hub text { fill: #fff; }
     .node.ext rect { fill: #f4f4f4; stroke: #9a9a9a; stroke-dasharray: 5 4; stroke-width: 1.2; }
     .node.ext text { fill: #555; }
     .node text { font: 600 15px system-ui, sans-serif; fill: #2b2350; text-anchor: middle; pointer-events: none; }
@@ -54,7 +52,7 @@
       package. Hover a block to see only its connections.</p>
 
     <div class="map-wrap">
-    <svg class="repo-map" id="map" viewBox="0 0 1000 640" xmlns="http://www.w3.org/2000/svg">
+    <svg class="repo-map" id="map" viewBox="0 150 1000 440" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
           <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a3aff"/>
@@ -70,11 +68,6 @@
       <path class="edge" data-n="precise,skaters"      d="M 590 380 C 450 330, 330 330, 252 372"/>
       <text class="edge-label" x="420" y="330">skaters run inside precise</text>
 
-      <!-- edges: the live network consumes the family -->
-      <path class="edge" data-n="microprediction,skaters"  d="M 430 96 C 260 130, 180 220, 168 351"/>
-      <path class="edge" data-n="microprediction,precise"  d="M 560 96 C 720 130, 700 220, 668 351"/>
-      <path class="edge" data-n="microprediction,humpday"  d="M 575 80 C 800 90, 880 200, 898 351"/>
-
       <!-- edges: plays well with -->
       <path class="edge plays" data-n="skaters,river"    d="M 170 409 L 170 516"/>
       <text class="edge-label" x="216" y="468">ice-skaters</text>
@@ -84,15 +77,6 @@
       <path class="edge plays" data-n="allocation,skfolio" d="M 600 240 C 520 330, 500 430, 528 514"/>
       <path class="edge plays" data-n="allocation,river"   d="M 545 226 C 330 260, 210 400, 178 514"/>
       <path class="edge plays" data-n="humpday,optuna"     d="M 900 409 L 900 516"/>
-
-      <!-- hub -->
-      <g class="node hub" data-n="microprediction">
-        <a href="https://www.microprediction.org/">
-          <rect x="410" y="42" width="180" height="58"/>
-          <text x="500" y="66">microprediction</text>
-          <text class="sub" x="500" y="86">the live prediction network</text>
-        </a>
-      </g>
 
       <!-- applications row -->
       <g class="node" data-n="timemachines">
@@ -209,8 +193,7 @@
       construction, on precise and thurstone).
       <a href="https://github.com/microprediction/humpday">humpday</a> stands slightly apart:
       it wraps and races the black-box optimizers (Optuna, Nevergrad, SciPy and friends) so
-      the rest of the family never argues about tuners. Everything is exercised, live, on the
-      <a href="https://www.microprediction.org/">microprediction</a> network, and the dashed
+      the rest of the family never argues about tuners. The dashed
       edges are the doors out: river for online ML pipelines
       (<a href="https://github.com/microprediction/ice-skaters">ice-skaters</a>), skfolio and
       scikit-learn for the portfolio and estimator ecosystems.
