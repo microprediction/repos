@@ -44,12 +44,8 @@
 
   <main>
     <h1>The microprediction stack</h1>
-    <p class="subtitle">One map: what builds on what, and what plays well with what.</p>
-
     <p class="lead">Cores are few and stable; applications multiply, so they get their own
-      package. Click any block to visit it. Solid arrows mean <em>builds on</em> (the lower
-      package does the numerics); dashed edges mean <em>plays well with</em> an outside
-      package. Hover a block to see only its connections.</p>
+      package.</p>
 
     <div class="map-wrap">
     <svg class="repo-map" id="map" viewBox="0 22 1000 412" xmlns="http://www.w3.org/2000/svg">
@@ -61,19 +57,19 @@
 
       <!-- edges: builds on -->
       <path class="edge" data-n="timemachines,skaters" d="M 170 98 L 170 201"/>
-      <path class="edge" data-n="winning,thurstone"    d="M 402 98 L 416 201"/>
+      <path class="edge" data-n="winning,thurstone"    d="M 420 98 L 420 201"/>
       <path class="edge" data-n="allocation,thurstone" d="M 560 98 C 530 140, 495 172, 458 200"/>
       <path class="edge" data-n="allocation,precise"   d="M 612 98 C 648 138, 675 165, 692 200"/>
       <path class="edge" data-n="schur,precise"        d="M 818 98 C 795 140, 762 168, 736 200"/>
-      <path class="edge" data-n="precise,skaters"      d="M 622 245 C 480 295, 335 292, 250 250"/>
-      <text class="edge-label" x="437" y="304">skaters run inside precise</text>
+      <path class="edge" data-n="precise,skaters"      d="M 618 240 C 500 287, 350 287, 252 245"/>
+      <text class="edge-label" x="435" y="298">skaters run inside precise</text>
 
       <!-- edges: plays well with -->
       <path class="edge plays" data-n="skaters,river"    d="M 170 263 L 170 368"/>
       <text class="edge-label" x="216" y="322">ice-skaters</text>
-      <path class="edge plays" data-n="precise,sklearn"  d="M 655 263 L 602 368"/>
-      <path class="edge plays" data-n="schur,skfolio"    d="M 832 98 C 852 180, 818 300, 785 368"/>
-      <path class="edge plays" data-n="allocation,skfolio" d="M 563 98 C 525 220, 552 330, 688 383"/>
+      <path class="edge plays" data-n="precise,sklearn"  d="M 715 263 L 752 368"/>
+      <path class="edge plays" data-n="schur,skfolio"    d="M 838 98 C 872 210, 790 335, 662 380"/>
+      <path class="edge plays" data-n="allocation,skfolio" d="M 585 98 L 585 368"/>
       <path class="edge plays" data-n="humpday,optuna"     d="M 918 263 L 922 368"/>
 
       <!-- applications row -->
@@ -86,9 +82,9 @@
       </g>
       <g class="node" data-n="winning">
         <a href="https://winning.microprediction.org/">
-          <rect x="320" y="40" width="160" height="58"/>
-          <text x="400" y="64">winning</text>
-          <text class="sub" x="400" y="84">rating systems</text>
+          <rect x="340" y="40" width="160" height="58"/>
+          <text x="420" y="64">winning</text>
+          <text class="sub" x="420" y="84">rating systems</text>
         </a>
       </g>
       <g class="node" data-n="allocation">
@@ -144,24 +140,24 @@
           <text class="sub" x="170" y="407">online ML</text>
         </a>
       </g>
-      <g class="node ext" data-n="sklearn">
-        <a href="https://scikit-learn.org/">
-          <rect x="510" y="370" width="150" height="46"/>
-          <text x="585" y="390">scikit-learn</text>
-          <text class="sub" x="585" y="407">estimator API</text>
-        </a>
-      </g>
       <g class="node ext" data-n="skfolio">
         <a href="https://skfolio.org/">
+          <rect x="510" y="370" width="150" height="46"/>
+          <text x="585" y="390">skfolio</text>
+          <text class="sub" x="585" y="407">portfolio construction</text>
+        </a>
+      </g>
+      <g class="node ext" data-n="sklearn">
+        <a href="https://scikit-learn.org/">
           <rect x="690" y="370" width="150" height="46"/>
-          <text x="765" y="390">skfolio</text>
-          <text class="sub" x="765" y="407">portfolio construction</text>
+          <text x="765" y="390">scikit-learn</text>
+          <text class="sub" x="765" y="407">estimator API</text>
         </a>
       </g>
       <g class="node ext" data-n="optuna">
         <a href="https://optuna.org/">
           <rect x="848" y="370" width="150" height="46"/>
-          <text x="923" y="390">optuna &middot; nevergrad</text>
+          <text x="923" y="390">optuna</text>
           <text class="sub" x="923" y="407">wrapped &amp; benchmarked</text>
         </a>
       </g>
@@ -190,7 +186,7 @@
       <a href="https://github.com/microprediction/allocation">allocation</a> (portfolio
       construction, on precise and thurstone).
       <a href="https://github.com/microprediction/humpday">humpday</a> stands slightly apart:
-      it wraps and races the black-box optimizers (Optuna, Nevergrad, SciPy and friends) so
+      it wraps and races the black-box optimizers (Optuna, SciPy and friends) so
       the rest of the family never argues about tuners. The dashed
       edges are the doors out: river for online ML pipelines
       (<a href="https://github.com/microprediction/ice-skaters">ice-skaters</a>), skfolio and
