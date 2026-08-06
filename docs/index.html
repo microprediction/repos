@@ -30,6 +30,11 @@
     svg.dimmed .edge.lit, svg.dimmed .node.lit { opacity: 1; }
     .legend { display: flex; gap: 26px; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted); margin: 6px 0 0; align-items: center; }
     .legend svg { vertical-align: middle; }
+    ul.sites { list-style: none; margin: 0; padding: 0; }
+    ul.sites > li { padding: 14px 0; border-bottom: 1px solid #efede6; }
+    ul.sites > li:last-child { border-bottom: none; }
+    ul.sites p { margin: 4px 0 0; font-size: 0.95rem; }
+    ul.sites .sep { color: #cfcdc6; margin: 0 6px; }
   </style>
 </head>
 <body>
@@ -65,8 +70,10 @@
       <text class="edge-label" x="435" y="298">volatility estimation</text>
 
       <!-- edges: plays well with -->
-      <path class="edge" data-n="skaters,ice-skaters" d="M 170 263 L 170 294"/>
-      <path class="edge plays" data-n="ice-skaters,river" d="M 170 334 L 170 368"/>
+      <path class="edge" data-n="skaters,ice-skaters" d="M 152 263 L 140 294"/>
+      <path class="edge" data-n="skaters,prophet-laplace" d="M 196 263 L 216 294"/>
+      <path class="edge plays" data-n="ice-skaters,river" d="M 140 334 L 160 368"/>
+      <path class="edge plays" data-n="prophet-laplace,prophet" d="M 244 334 L 300 368"/>
       <path class="edge plays" data-n="precise,sklearn"  d="M 715 263 L 752 368"/>
       
       <path class="edge plays" data-n="allocation,skfolio" d="M 585 98 L 585 368"/>
@@ -121,23 +128,36 @@
         <a href="https://github.com/microprediction/humpday">
           <rect x="838" y="205" width="160" height="58"/>
           <text x="918" y="229">humpday</text>
-          <text class="sub" x="918" y="249">black-box optimization</text>
+          <text class="sub" x="918" y="249">online black-box optimization</text>
         </a>
       </g>
 
       <g class="node small" data-n="ice-skaters">
         <a href="https://ice-skaters.microprediction.org/">
-          <rect x="118" y="298" width="104" height="34" rx="8"/>
-          <text x="170" y="320">ice-skaters</text>
+          <rect x="88" y="298" width="104" height="34" rx="8"/>
+          <text x="140" y="320">ice-skaters</text>
+        </a>
+      </g>
+      <g class="node small" data-n="prophet-laplace">
+        <a href="https://github.com/microprediction/prophet-laplace">
+          <rect x="200" y="298" width="132" height="34" rx="8"/>
+          <text x="266" y="320">prophet-laplace</text>
         </a>
       </g>
 
       <!-- externals row -->
       <g class="node ext" data-n="river">
         <a href="https://riverml.xyz/">
-          <rect x="95" y="370" width="150" height="46"/>
-          <text x="170" y="390">river</text>
-          <text class="sub" x="170" y="407">online ML</text>
+          <rect x="85" y="370" width="150" height="46"/>
+          <text x="160" y="390">river</text>
+          <text class="sub" x="160" y="407">online ML</text>
+        </a>
+      </g>
+      <g class="node ext" data-n="prophet">
+        <a href="https://facebook.github.io/prophet/">
+          <rect x="248" y="370" width="150" height="46"/>
+          <text x="323" y="390">prophet</text>
+          <text class="sub" x="323" y="407">calibrated by skaters</text>
         </a>
       </g>
       <g class="node ext" data-n="skfolio">
@@ -172,39 +192,53 @@
       <span><svg width="18" height="14"><rect x="1" y="1" width="16" height="12" rx="3" fill="#f4f4f4" stroke="#9a9a9a" stroke-dasharray="4 3"/></svg> outside package</span>
     </div>
 
-    <h2>The one-paragraph tour</h2>
-    <p>
-      Three cores do the numerics. <a href="https://skaters.microprediction.org/">skaters</a>
-      turns any stream into a full predictive distribution, one call at a time;
-      <a href="https://github.com/microprediction/precise">precise</a> keeps covariance
-      matrices current online; <a href="https://thurstone.microprediction.org/">thurstone</a>
-      computes exact order statistics of many contestants on a lattice. The applications sit
-      one level up: <a href="https://timemachines.microprediction.org/">timemachines</a>
-      (streaming anomaly detection with calibrated p-values, on skaters),
-      <a href="https://winning.microprediction.org/">winning</a> (rating systems, on
-      thurstone), <a href="https://github.com/microprediction/allocation">allocation</a> (portfolio
-      construction, on precise and thurstone).
-      <a href="https://github.com/microprediction/humpday">humpday</a> stands slightly apart:
-      its own black-box optimizer, in Python and JavaScript, raced against Optuna, SciPy
-      and friends. A tiny wedge,
-      <a href="https://github.com/microprediction/prophet-laplace">prophet-laplace</a>,
-      drops Meta's <a href="https://github.com/facebook/prophet">Prophet</a> into skaters'
-      coordinates and maps back exactly, so an existing model gains calibrated distributions
-      without retraining. The dashed
-      edges are the doors out: river for online ML pipelines
-      (<a href="https://github.com/microprediction/ice-skaters">ice-skaters</a>), skfolio and
-      scikit-learn for the portfolio and estimator ecosystems.
-    </p>
+    <h2 id="sites">Sites</h2>
+    <p class="lead">Longer write-ups, demos and papers, one topic each.</p>
+    <ul class="sites">
+      <li>
+        <a href="https://schur.microprediction.org">schur.microprediction.org</a>
+        <span class="sep">·</span>
+        <a href="https://schur.microprediction.org/papers.html">papers</a>
+        <p>Schur portfolio literature. Yours truly provided the unification of hierarchical
+        and optimisation-based portfolio construction via block-matrix inversion. This is now
+        part of <a href="https://skfolio.org/">skfolio</a> and
+        <a href="https://allocation.microprediction.org/">allocation</a>.</p>
+      </li>
+      <li>
+        <a href="https://conformalprediction.net">conformalprediction.net</a>
+        <span class="sep">·</span>
+        <a href="https://conformalprediction.net/papers/">papers</a>
+        <p>There's a small theoretical contribution: a KL-divergence theorem explaining
+        clearly the limitations of conformal prediction. See
+        <a href="https://conformalprediction.net/demos/14-four-readings.html">this demo</a>,
+        for example.</p>
+      </li>
+      <li>
+        <a href="https://mechanisms.microprediction.org">mechanisms.microprediction.org</a>
+        <span class="sep">·</span>
+        <a href="https://mechanisms.microprediction.org/papers.html">papers</a>
+        <p>Survey of markets, scoring rules and everything in between.</p>
+      </li>
+      <li>
+        <a href="https://firstdown.microprediction.org">firstdown.microprediction.org</a>
+        <span class="sep">·</span>
+        <a href="https://github.com/microprediction/firstdown">paper &amp; notebooks</a>
+        <p>I've been trying to change NFL teams' first down strategy for years, with little
+        success for now.</p>
+      </li>
+    </ul>
   </main>
 
   <footer>
+    <a href="https://home.microprediction.org">home.microprediction.org</a> &middot;
     <a href="https://github.com/microprediction">github.com/microprediction</a> &middot;
     the family: <a href="https://skaters.microprediction.org">skaters</a>,
     <a href="https://timemachines.microprediction.org">timemachines</a>,
     <a href="https://thurstone.microprediction.org">thurstone</a>,
     <a href="https://winning.microprediction.org">winning</a>,
+    <a href="https://allocation.microprediction.org">allocation</a>,
     <a href="https://github.com/microprediction/precise">precise</a>,
-    <a href="https://github.com/microprediction/humpday">humpday</a>.
+    <a href="https://humpday.microprediction.org">humpday</a>.
   </footer>
 
   <script>
