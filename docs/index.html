@@ -62,8 +62,8 @@
 
       <!-- edges: builds on -->
       <path class="edge" data-n="timemachines,skaters" d="M 170 203 L 170 100"/>
-      <path class="edge" data-n="winning,thurstone"    d="M 420 203 L 420 100"/>
-      <path class="edge" data-n="allocation,thurstone" d="M 458 202 C 495 172, 530 140, 562 100"/>
+      <path class="edge" data-n="ratings,winning"      d="M 420 203 L 420 100"/>
+      <path class="edge" data-n="allocation,winning"   d="M 458 202 C 495 172, 530 140, 562 100"/>
       <path class="edge" data-n="allocation,precise"   d="M 692 202 C 675 165, 648 138, 614 100"/>
       
       <path class="edge plays" data-n="precise,skaters" d="M 252 245 C 350 287, 500 287, 616 242"/>
@@ -71,6 +71,7 @@
 
       <!-- edges: plays well with -->
       <path class="edge" data-n="skaters,ice-skaters" d="M 152 263 L 140 294"/>
+      <path class="edge" data-n="winning,thurstone" d="M 420 263 L 420 294"/>
       <path class="edge" data-n="skaters,prophet-laplace" d="M 196 263 L 216 294"/>
       <path class="edge plays" data-n="ice-skaters,river" d="M 140 334 L 160 368"/>
       <path class="edge plays" data-n="prophet-laplace,prophet" d="M 244 334 L 300 368"/>
@@ -87,10 +88,10 @@
           <text class="sub" x="170" y="84">streaming anomalies</text>
         </a>
       </g>
-      <g class="node" data-n="winning">
-        <a href="https://winning.microprediction.org/">
+      <g class="node" data-n="ratings">
+        <a href="https://winning.microprediction.org/ratings.html">
           <rect x="340" y="40" width="160" height="58"/>
-          <text x="420" y="64">winning</text>
+          <text x="420" y="64">ratings</text>
           <text class="sub" x="420" y="84">rating systems</text>
         </a>
       </g>
@@ -110,11 +111,11 @@
           <text class="sub" x="170" y="249">distributional forecasting</text>
         </a>
       </g>
-      <g class="node core" data-n="thurstone">
-        <a href="https://thurstone.microprediction.org/">
+      <g class="node core" data-n="winning">
+        <a href="https://winning.microprediction.org/">
           <rect x="340" y="205" width="160" height="58"/>
-          <text x="420" y="229">thurstone</text>
-          <text class="sub" x="420" y="249">lattice order statistics</text>
+          <text x="420" y="229">winning</text>
+          <text class="sub" x="420" y="249">correlated races &#183; factor probit</text>
         </a>
       </g>
       <g class="node core" data-n="precise">
@@ -136,6 +137,12 @@
         <a href="https://ice-skaters.microprediction.org/">
           <rect x="88" y="298" width="104" height="34" rx="8"/>
           <text x="140" y="320">ice-skaters</text>
+        </a>
+      </g>
+      <g class="node small" data-n="thurstone">
+        <a href="https://thurstone.microprediction.org/">
+          <rect x="368" y="298" width="104" height="34" rx="8"/>
+          <text x="420" y="320">thurstone</text>
         </a>
       </g>
       <g class="node small" data-n="prophet-laplace">
@@ -195,6 +202,16 @@
     <h2 id="sites">Sites</h2>
     <p class="lead">Longer write-ups, demos and papers, one topic each.</p>
     <ul class="sites">
+      <li>
+        <a href="https://winning.microprediction.org">winning.microprediction.org</a>
+        <span class="sep">&#183;</span>
+        <a href="https://winning.microprediction.org/#demos">demos</a>
+        <p>Races, correlated or not: a generalization of factor multinomial probit
+        models that scales to millions of variables. Interactive in-browser demos
+        (the model live, share calibration, the photo-finish circuit), the factor
+        probit paper, and rating systems benchmarked on twelve datasets. The
+        thurstone package is maintained as a compatibility shim over this one.</p>
+      </li>
       <li>
         <a href="https://schur.microprediction.org">schur.microprediction.org</a>
         <span class="sep">·</span>
