@@ -30,11 +30,18 @@
     svg.dimmed .edge.lit, svg.dimmed .node.lit { opacity: 1; }
     .legend { display: flex; gap: 26px; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted); margin: 6px 0 0; align-items: center; }
     .legend svg { vertical-align: middle; }
-    ul.sites { list-style: none; margin: 0; padding: 0; }
-    ul.sites > li { padding: 14px 0; border-bottom: 1px solid #efede6; }
-    ul.sites > li:last-child { border-bottom: none; }
-    ul.sites p { margin: 4px 0 0; font-size: 0.95rem; }
-    ul.sites .sep { color: #cfcdc6; margin: 0 6px; }
+    /* research & educational sites: cards, in a warm tint distinct from the purple repo boxes */
+    .site-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin: 18px 0 8px; }
+    .site-card { display: block; background: #fbf6ea; border: 1px solid #e3d3a8; border-left: 4px solid #b9770e;
+      border-radius: 10px; padding: 14px 16px 12px; color: var(--text); transition: box-shadow .15s, transform .15s; }
+    .site-card:hover { text-decoration: none; box-shadow: 0 4px 16px rgba(185, 119, 14, 0.16); transform: translateY(-2px); }
+    .site-card .host { font: 600 1rem system-ui, sans-serif; color: #5c3d07; word-break: break-all; }
+    .site-card .kind { float: right; font-size: 0.7rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+      color: #b9770e; background: #f3e6c6; border-radius: 10px; padding: 1px 8px; margin: 2px 0 0 8px; }
+    .site-card p { margin: 6px 0 0; font-size: 0.9rem; color: var(--muted); line-height: 1.45; }
+    .site-card .more { display: block; margin-top: 8px; font-size: 0.82rem; color: var(--accent); }
+    .site-card .more span { color: #cfcdc6; margin: 0 6px; }
+    .site-card p a { color: var(--accent); }
   </style>
 </head>
 <body>
@@ -200,64 +207,59 @@
     </div>
 
     <h2 id="sites">Sites</h2>
-    <p class="lead">Longer write-ups, demos and papers, one topic each.</p>
-    <ul class="sites">
-      <li>
-        <a href="https://winning.microprediction.org">winning.microprediction.org</a>
-        <span class="sep">&#183;</span>
-        <a href="https://winning.microprediction.org/#demos">demos</a>
-        <p>Races, correlated or not: a generalization of factor multinomial probit
-        models that scales to millions of variables. Interactive in-browser demos
-        (the model live, share calibration, the photo-finish circuit), the factor
-        probit paper, and rating systems benchmarked on twelve datasets. The
-        thurstone package is maintained as a compatibility shim over this one.</p>
-      </li>
-      <li>
-        <a href="https://schur.microprediction.org">schur.microprediction.org</a>
-        <span class="sep">·</span>
-        <a href="https://schur.microprediction.org/papers.html">papers</a>
-        <p>Schur portfolio literature. Yours truly provided the unification of hierarchical
-        and optimisation-based portfolio construction via block-matrix inversion. This is now
-        part of <a href="https://skfolio.org/">skfolio</a> and
-        <a href="https://allocation.microprediction.org/">allocation</a>.</p>
-      </li>
-      <li>
-        <a href="https://conformalprediction.net">conformalprediction.net</a>
-        <span class="sep">·</span>
-        <a href="https://conformalprediction.net/papers/">papers</a>
-        <p>There's a small theoretical contribution: a KL-divergence theorem explaining
-        clearly the limitations of conformal prediction. See
-        <a href="https://conformalprediction.net/demos/14-four-readings.html">this demo</a>,
-        for example.</p>
-      </li>
-      <li>
-        <a href="https://mechanisms.microprediction.org">mechanisms.microprediction.org</a>
-        <span class="sep">·</span>
-        <a href="https://mechanisms.microprediction.org/papers.html">papers</a>
+    <p class="lead">Longer write-ups, demos and papers, one topic each. Amber cards are research and educational sites; the purple boxes above are packages.</p>
+    <div class="site-grid">
+      <a class="site-card" href="https://pitllm.microprediction.org">
+        <span class="kind">research</span><span class="host">pitllm.microprediction.org</span>
+        <p>Point-in-time language models: the released checkpoint sequences (ChronoBERT, Time Machine GPT,
+        DatedGPT, TimeLMs, StoriesLM), a verified bibliography of the look-ahead-bias literature with a
+        one-paragraph &ldquo;key idea&rdquo; note per paper, a literature map, a timeline, and dated corpora.</p>
+        <span class="more"><em>models</em><span>&#183;</span><em>key ideas</em><span>&#183;</span><em>literature map</em></span>
+      </a>
+      <a class="site-card" href="https://winning.microprediction.org">
+        <span class="kind">research</span><span class="host">winning.microprediction.org</span>
+        <p>Races, correlated or not: a generalization of factor multinomial probit models that scales to
+        millions of variables. In-browser demos (the model live, share calibration, the photo-finish
+        circuit), the factor probit paper, and rating systems benchmarked on twelve datasets. The
+        thurstone package is a compatibility shim over this one.</p>
+        <span class="more"><em>demos</em><span>&#183;</span><em>ratings</em></span>
+      </a>
+      <a class="site-card" href="https://schur.microprediction.org">
+        <span class="kind">research</span><span class="host">schur.microprediction.org</span>
+        <p>Schur portfolio literature. The unification of hierarchical and optimisation-based portfolio
+        construction via block-matrix inversion, now part of skfolio and allocation.</p>
+        <span class="more"><em>papers</em><span>&#183;</span><em>literature map</em><span>&#183;</span><em>timeline</em></span>
+      </a>
+      <a class="site-card" href="https://conformalprediction.net">
+        <span class="kind">research</span><span class="host">conformalprediction.net</span>
+        <p>A small theoretical contribution: a KL-divergence theorem explaining clearly the limitations of
+        conformal prediction, with demos.</p>
+        <span class="more"><em>papers</em><span>&#183;</span><em>demos</em></span>
+      </a>
+      <a class="site-card" href="https://mechanisms.microprediction.org">
+        <span class="kind">survey</span><span class="host">mechanisms.microprediction.org</span>
         <p>Survey of markets, scoring rules and everything in between.</p>
-      </li>
-      <li>
-        <a href="https://inventory.microprediction.org">inventory.microprediction.org</a>
-        <span class="sep">·</span>
-        <a href="https://inventory.microprediction.org/papers.html">papers</a>
-        <p>Control theory applied to inventory and pricing. Notes, preprints and a literature
-        map for storable goods whose carrying cost is nearly zero, where the dealer's quoted
-        width and skew end up doing the work that cost of carry usually does.</p>
-      </li>
-      <li>
-        <a href="https://book.microprediction.org">book.microprediction.org</a>
-        <span class="sep">·</span>
-        <a href="https://mitpress.mit.edu/books/microprediction">MIT Press</a>
+        <span class="more"><em>papers</em></span>
+      </a>
+      <a class="site-card" href="https://inventory.microprediction.org">
+        <span class="kind">research</span><span class="host">inventory.microprediction.org</span>
+        <p>Control theory applied to inventory and pricing: notes, preprints and a literature map for
+        storable goods whose carrying cost is nearly zero, where the dealer&apos;s quoted width and skew do
+        the work that cost of carry usually does.</p>
+        <span class="more"><em>papers</em></span>
+      </a>
+      <a class="site-card" href="https://book.microprediction.org">
+        <span class="kind">book</span><span class="host">book.microprediction.org</span>
         <p><em>Microprediction: Building an Open AI Network</em> (MIT Press, 2022).</p>
-      </li>
-      <li>
-        <a href="https://firstdown.microprediction.org">firstdown.microprediction.org</a>
-        <span class="sep">·</span>
-        <a href="https://github.com/microprediction/firstdown">paper &amp; notebooks</a>
-        <p>I've been trying to change NFL teams' first down strategy for years, with little
-        success for now.</p>
-      </li>
-    </ul>
+        <span class="more"><em>MIT Press</em><span>&#183;</span><em>reviews &amp; audio</em></span>
+      </a>
+      <a class="site-card" href="https://firstdown.microprediction.org">
+        <span class="kind">sports</span><span class="host">firstdown.microprediction.org</span>
+        <p>Trying to change NFL teams&apos; first-down strategy for years, with little success so far.
+        Paper and notebooks.</p>
+        <span class="more"><em>paper &amp; notebooks</em></span>
+      </a>
+    </div>
   </main>
 
   <footer>
