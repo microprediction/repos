@@ -31,9 +31,9 @@
     .legend { display: flex; gap: 26px; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted); margin: 6px 0 0; align-items: center; }
     .legend svg { vertical-align: middle; }
     /* research & educational sites: small amber boxes, sized like the package boxes above */
-    .site-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 16px 0 8px; }
-    .site-card { display: block; background: #fbf4e4; border: 1.5px solid #c9a24a; border-radius: 10px; padding: 9px 10px 8px;
-      text-align: center; color: #2b2350; transition: filter .15s, border-width .15s; }
+    .site-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0 8px; }
+    .site-card { display: block; width: 172px; min-height: 64px; background: #fbf4e4; border: 1.5px solid #c9a24a; border-radius: 10px;
+      padding: 12px 10px 10px; text-align: center; color: #2b2350; transition: filter .15s, border-color .15s; }
     .site-card:hover { text-decoration: none; filter: brightness(1.04); border-color: #b9770e; }
     .site-card .nm { display: block; font: 600 15px system-ui, sans-serif; color: #5c3d07; }
     .site-card .sub { display: block; font: 400 11.5px system-ui, sans-serif; color: #5a5a5a; margin-top: 2px; }
