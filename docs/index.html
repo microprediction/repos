@@ -17,7 +17,12 @@
     .node rect { fill: #ece9ff; stroke: #4a3aff; stroke-width: 1.5; rx: 10; cursor: pointer; }
     .node.core rect { fill: #4a3aff; }
     .node.core text { fill: #fff; }
+    .node.core.util rect { fill: #8a80f2; stroke: #6f64e0; }
     .node.small text { font-size: 12.5px; }
+    .node.tiny text { font-size: 10.5px; }
+    .grp { fill: none; stroke: #4a3aff; stroke-opacity: .35; stroke-dasharray: 4 4; }
+    .grp-label { font: italic 10px system-ui, sans-serif; fill: #8a84c9; text-anchor: middle; }
+    svg.dimmed .grp, svg.dimmed .grp-label { opacity: 0.18; }
     .node.ext rect { fill: #f4f4f4; stroke: #9a9a9a; stroke-dasharray: 5 4; stroke-width: 1.2; }
     .node.ext text { fill: #555; }
     .node text { font: 600 15px system-ui, sans-serif; fill: #2b2350; text-anchor: middle; pointer-events: none; }
@@ -35,6 +40,9 @@
     .site-card { display: block; width: 172px; min-height: 64px; background: #fbf4e4; border: 1.5px solid #c9a24a; border-radius: 10px;
       padding: 12px 10px 10px; text-align: center; color: #2b2350; transition: filter .15s, border-color .15s; }
     .site-card:hover { text-decoration: none; filter: brightness(1.04); border-color: #b9770e; }
+    .site-grid.interests .site-card { background: #eaf5ea; border-color: #7fb07f; }
+    .site-grid.interests .site-card:hover { border-color: #4f8f4f; }
+    .site-grid.interests .site-card .nm { color: #2f5a2f; }
     .site-card .nm { display: block; font: 600 15px system-ui, sans-serif; color: #5c3d07; }
     .site-card .sub { display: block; font: 400 11.5px system-ui, sans-serif; color: #5a5a5a; margin-top: 2px; }
   </style>
@@ -52,10 +60,10 @@
 
   <main>
     <h1>The microprediction stack</h1>
-    <p class="lead">A collection of tiny, dependency free Python and Javascript packages. Some novel. Some SOTA.</p>
+    <p class="lead">Tiny fast dependency-free packages. <em>Winning</em> and <em>Skaters</em> are SOTA.</p>
 
     <div class="map-wrap">
-    <svg class="repo-map" id="map" viewBox="0 22 1000 412" xmlns="http://www.w3.org/2000/svg">
+    <svg class="repo-map" id="map" viewBox="0 22 1000 472" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
           <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a3aff"/>
@@ -63,116 +71,204 @@
       </defs>
 
       <!-- edges: builds on -->
-      <path class="edge" data-n="timemachines,skaters" d="M 170 203 L 170 100"/>
-      <path class="edge" data-n="allocation,winning"   d="M 458 202 C 495 172, 530 140, 562 100"/>
-      <path class="edge" data-n="allocation,precise"   d="M 692 202 C 675 165, 648 138, 614 100"/>
-      
-      <path class="edge plays" data-n="precise,skaters" d="M 252 245 C 350 287, 500 287, 616 242"/>
-      <text class="edge-label" x="435" y="298">volatility estimation</text>
+      <path class="edge" data-n="timemachines,skaters" d="M 190 203 L 190 100"/>
+      <path class="edge" data-n="allocation,winning"   d="M 580 203 C 610 170, 650 135, 672 100"/>
+      <path class="edge" data-n="allocation,precise"   d="M 820 203 C 800 165, 765 135, 732 100"/>
+      <path class="edge" data-n="skaters,ice-skaters" d="M 160 263 L 90 296"/>
+      <path class="edge" data-n="skaters,prophet-laplace" d="M 200 263 L 200 296"/>
+      <path class="edge" data-n="skaters,skaters-r,Skaters.jl" d="M 262 263 L 300 292"/>
+      <path class="edge" data-n="winning,mvtnormfast,mlogitfast,rprobitfast,MultinomialProbit,GMRFExtremes,FactorMvNormalCDF" d="M 540 263 L 540 292"/>
+
+      <path class="edge" data-n="fastrace,winning" d="M 540 184 L 540 203"/>
 
       <!-- edges: plays well with -->
-      <path class="edge" data-n="skaters,ice-skaters" d="M 152 263 L 140 294"/>
-      <path class="edge" data-n="skaters,prophet-laplace" d="M 196 263 L 216 294"/>
-      <path class="edge plays" data-n="ice-skaters,river" d="M 140 334 L 160 368"/>
-      <path class="edge plays" data-n="prophet-laplace,prophet" d="M 244 334 L 300 368"/>
-      <path class="edge plays" data-n="precise,sklearn"  d="M 715 263 L 752 368"/>
-      
-      <path class="edge plays" data-n="allocation,skfolio" d="M 585 98 L 585 368"/>
-      <path class="edge plays" data-n="humpday,optuna"     d="M 918 263 L 922 368"/>
+      <path class="edge plays" data-n="ice-skaters,river" d="M 72 332 L 80 428"/>
+      <path class="edge plays" data-n="prophet-laplace,prophet" d="M 200 332 L 235 428"/>
+      <path class="edge plays" data-n="humpday,allocation" d="M 535 104 L 618 76"/>
+      <path class="edge plays" data-n="allocation,skfolio" d="M 780 69 L 828 69"/>
+      <path class="edge plays" data-n="precise,randomcov" d="M 790 205 L 756 176"/>
+      <path class="edge plays" data-n="precise,sklearn"  d="M 905 203 L 910 176"/>
 
-      <!-- applications row -->
+      <!-- top row -->
       <g class="node" data-n="timemachines">
         <a href="https://timemachines.microprediction.org/">
-          <rect x="90" y="40" width="160" height="58"/>
-          <text x="170" y="64">timemachines</text>
-          <text class="sub" x="170" y="84">streaming anomalies</text>
+          <rect x="110" y="40" width="160" height="58"/>
+          <text x="190" y="64">timemachines</text>
+          <text class="sub" x="190" y="84">streaming anomalies</text>
+        </a>
+      </g>
+      <g class="node core util" data-n="humpday">
+        <a href="https://github.com/microprediction/humpday">
+          <rect x="345" y="81" width="190" height="58"/>
+          <text x="440" y="105">humpday</text>
+          <text class="sub" x="440" y="125">online black-box optimization</text>
         </a>
       </g>
       <g class="node" data-n="allocation">
         <a href="https://github.com/microprediction/allocation">
-          <rect x="505" y="40" width="160" height="58"/>
-          <text x="585" y="64">allocation</text>
-          <text class="sub" x="585" y="84">streaming portfolios</text>
+          <rect x="620" y="40" width="160" height="58"/>
+          <text x="700" y="64">allocation</text>
+          <text class="sub" x="700" y="84">streaming portfolios</text>
         </a>
       </g>
-      
+
+      <!-- winning's compiled kernels -->
+      <g class="node small tiny" data-n="fastrace">
+        <a href="https://github.com/microprediction/winning/tree/main/rust/fastrace">
+          <rect x="490" y="158" width="100" height="26" rx="7"/>
+          <text x="540" y="175">fastrace &#183; rust</text>
+        </a>
+      </g>
+
       <!-- cores row -->
       <g class="node core" data-n="skaters">
         <a href="https://skaters.microprediction.org/">
-          <rect x="90" y="205" width="160" height="58"/>
-          <text x="170" y="229">skaters</text>
-          <text class="sub" x="170" y="249">distributional forecasting</text>
+          <rect x="110" y="205" width="160" height="58"/>
+          <text x="190" y="229">skaters</text>
+          <text class="sub" x="190" y="249">distributional forecasting</text>
         </a>
       </g>
       <g class="node core" data-n="winning">
         <a href="https://winning.microprediction.org/">
-          <rect x="340" y="205" width="160" height="58"/>
-          <text x="420" y="229">winning</text>
-          <text class="sub" x="420" y="249">correlated races &#183; factor probit</text>
+          <rect x="448" y="205" width="184" height="58"/>
+          <text x="540" y="229">winning</text>
+          <text class="sub" x="540" y="249">correlated races &#183; factor probit</text>
         </a>
       </g>
-      <g class="node core" data-n="precise">
+      <g class="node core util" data-n="precise">
         <a href="https://github.com/microprediction/precise">
-          <rect x="620" y="205" width="160" height="58"/>
-          <text x="700" y="229">precise</text>
-          <text class="sub" x="700" y="249">online covariance</text>
-        </a>
-      </g>
-      <g class="node core" data-n="humpday">
-        <a href="https://github.com/microprediction/humpday">
-          <rect x="838" y="205" width="160" height="58"/>
-          <text x="918" y="229">humpday</text>
-          <text class="sub" x="918" y="249">online black-box optimization</text>
+          <rect x="780" y="205" width="160" height="58"/>
+          <text x="860" y="229">precise</text>
+          <text class="sub" x="860" y="249">online covariance</text>
         </a>
       </g>
 
+      <!-- skaters: wrappers and ports -->
       <g class="node small" data-n="ice-skaters">
         <a href="https://ice-skaters.microprediction.org/">
-          <rect x="88" y="298" width="104" height="34" rx="8"/>
-          <text x="140" y="320">ice-skaters</text>
+          <rect x="20" y="298" width="104" height="34" rx="8"/>
+          <text x="72" y="321">ice-skaters</text>
         </a>
       </g>
       <g class="node small" data-n="prophet-laplace">
         <a href="https://github.com/microprediction/prophet-laplace">
-          <rect x="200" y="298" width="132" height="34" rx="8"/>
-          <text x="266" y="320">prophet-laplace</text>
+          <rect x="134" y="298" width="132" height="34" rx="8"/>
+          <text x="200" y="321">prophet-laplace</text>
+        </a>
+      </g>
+      <rect class="grp" x="280" y="294" width="112" height="72" rx="10"/>
+      <g class="node small tiny" data-n="skaters-r">
+        <a href="https://github.com/microprediction/skaters-r">
+          <rect x="286" y="300" width="100" height="28" rx="7"/>
+          <text x="336" y="318">skaters-r</text>
+        </a>
+      </g>
+      <g class="node small tiny" data-n="Skaters.jl">
+        <a href="https://github.com/microprediction/Skaters.jl">
+          <rect x="286" y="332" width="100" height="28" rx="7"/>
+          <text x="336" y="350">Skaters.jl</text>
+        </a>
+      </g>
+
+      <!-- winning: R ports (left), Julia packages (right) -->
+      <rect class="grp" x="418" y="294" width="244" height="120" rx="10"/>
+      <text class="grp-label" x="482" y="410">Julia</text>
+      <text class="grp-label" x="603" y="410">R</text>
+      <g class="node small tiny" data-n="mvtnormfast">
+        <a href="https://github.com/microprediction/winning/tree/main/r/mvtnormfast">
+          <rect x="547" y="300" width="112" height="28" rx="7"/>
+          <text x="603" y="318">mvtnormfast</text>
+        </a>
+      </g>
+      <g class="node small tiny" data-n="mlogitfast">
+        <a href="https://github.com/microprediction/winning/tree/main/r/mlogitfast">
+          <rect x="547" y="334" width="112" height="28" rx="7"/>
+          <text x="603" y="352">mlogitfast</text>
+        </a>
+      </g>
+      <g class="node small tiny" data-n="rprobitfast">
+        <a href="https://github.com/microprediction/winning/tree/main/r/rprobitfast">
+          <rect x="547" y="368" width="112" height="28" rx="7"/>
+          <text x="603" y="386">rprobitfast</text>
+        </a>
+      </g>
+      <g class="node small tiny" data-n="MultinomialProbit">
+        <a href="https://github.com/microprediction/winning/tree/main/julia/MultinomialProbit">
+          <rect x="423" y="300" width="118" height="28" rx="7"/>
+          <text x="482" y="318">MultinomialProbit</text>
+        </a>
+      </g>
+      <g class="node small tiny" data-n="GMRFExtremes">
+        <a href="https://github.com/microprediction/winning/tree/main/julia/GMRFExtremes">
+          <rect x="423" y="334" width="118" height="28" rx="7"/>
+          <text x="482" y="352">GMRFExtremes</text>
+        </a>
+      </g>
+      <g class="node small tiny" data-n="FactorMvNormalCDF">
+        <a href="https://github.com/microprediction/winning/tree/main/julia/FactorMvNormalCDF">
+          <rect x="423" y="368" width="118" height="28" rx="7"/>
+          <text x="482" y="386">FactorMvNormalCDF</text>
+        </a>
+      </g>
+
+      <!-- R packages the ports drop into -->
+      <path class="edge plays" data-n="mvtnormfast,mvtnorm" d="M 659 314 L 682 314"/>
+      <g class="node ext small tiny" data-n="mvtnorm">
+        <a href="https://cran.r-project.org/package=mvtnorm">
+          <rect x="684" y="300" width="76" height="28" rx="7"/>
+          <text x="722" y="318">mvtnorm</text>
+        </a>
+      </g>
+      <path class="edge plays" data-n="mlogitfast,mlogit" d="M 659 348 L 682 348"/>
+      <g class="node ext small tiny" data-n="mlogit">
+        <a href="https://cran.r-project.org/package=mlogit">
+          <rect x="684" y="334" width="76" height="28" rx="7"/>
+          <text x="722" y="352">mlogit</text>
+        </a>
+      </g>
+      <path class="edge plays" data-n="rprobitfast,Rprobit" d="M 659 382 L 682 382"/>
+      <g class="node ext small tiny" data-n="Rprobit">
+        <a href="https://github.com/dbauer72/Rprobit_old">
+          <rect x="684" y="368" width="76" height="28" rx="7"/>
+          <text x="722" y="386">Rprobit</text>
+        </a>
+      </g>
+
+      <!-- precise -->
+      <g class="node small" data-n="randomcov">
+        <a href="https://randomcov.microprediction.org/">
+          <rect x="652" y="150" width="104" height="30" rx="8"/>
+          <text x="704" y="171">randomcov</text>
         </a>
       </g>
 
       <!-- externals row -->
       <g class="node ext" data-n="river">
         <a href="https://riverml.xyz/">
-          <rect x="85" y="370" width="150" height="46"/>
-          <text x="160" y="390">river</text>
-          <text class="sub" x="160" y="407">online ML</text>
+          <rect x="5" y="430" width="150" height="46"/>
+          <text x="80" y="450">river</text>
+          <text class="sub" x="80" y="467">online ML</text>
         </a>
       </g>
       <g class="node ext" data-n="prophet">
         <a href="https://facebook.github.io/prophet/">
-          <rect x="248" y="370" width="150" height="46"/>
-          <text x="323" y="390">prophet</text>
-          <text class="sub" x="323" y="407">calibrated by skaters</text>
+          <rect x="160" y="430" width="150" height="46"/>
+          <text x="235" y="450">prophet</text>
+          <text class="sub" x="235" y="467">calibrated by skaters</text>
         </a>
       </g>
       <g class="node ext" data-n="skfolio">
         <a href="https://skfolio.org/">
-          <rect x="510" y="370" width="150" height="46"/>
-          <text x="585" y="390">skfolio</text>
-          <text class="sub" x="585" y="407">portfolio construction</text>
+          <rect x="830" y="46" width="150" height="46"/>
+          <text x="905" y="66">skfolio</text>
+          <text class="sub" x="905" y="83">portfolio construction</text>
         </a>
       </g>
       <g class="node ext" data-n="sklearn">
         <a href="https://scikit-learn.org/">
-          <rect x="690" y="370" width="150" height="46"/>
-          <text x="765" y="390">scikit-learn</text>
-          <text class="sub" x="765" y="407">estimator API</text>
-        </a>
-      </g>
-      <g class="node ext" data-n="optuna">
-        <a href="https://optuna.org/">
-          <rect x="848" y="370" width="150" height="46"/>
-          <text x="923" y="390">optuna</text>
-          <text class="sub" x="923" y="407">raced in benchmarks</text>
+          <rect x="845" y="128" width="150" height="46"/>
+          <text x="920" y="148">scikit-learn</text>
+          <text class="sub" x="920" y="165">estimator API</text>
         </a>
       </g>
     </svg>
@@ -181,23 +277,33 @@
     <div class="legend">
       <span><svg width="34" height="10"><line x1="0" y1="5" x2="26" y2="5" stroke="#4a3aff" stroke-width="2"/><path d="M 26 1 L 34 5 L 26 9 z" fill="#4a3aff"/></svg> feeds</span>
       <span><svg width="34" height="10"><line x1="0" y1="5" x2="34" y2="5" stroke="#9a9a9a" stroke-width="1.6" stroke-dasharray="6 5"/></svg> plays well with</span>
-      <span><svg width="18" height="14"><rect x="1" y="1" width="16" height="12" rx="3" fill="#4a3aff"/></svg> core</span>
+      <span><svg width="18" height="14"><rect x="1" y="1" width="16" height="12" rx="3" fill="#4a3aff"/></svg> core (SOTA)</span>
+      <span><svg width="18" height="14"><rect x="1" y="1" width="16" height="12" rx="3" fill="#8a80f2" stroke="#6f64e0"/></svg> collections</span>
       <span><svg width="18" height="14"><rect x="1" y="1" width="16" height="12" rx="3" fill="#ece9ff" stroke="#4a3aff"/></svg> application</span>
       <span><svg width="18" height="14"><rect x="1" y="1" width="16" height="12" rx="3" fill="#f4f4f4" stroke="#9a9a9a" stroke-dasharray="4 3"/></svg> outside package</span>
     </div>
 
-    <h2 id="sites">Sites</h2>
-    <p class="lead">Research and educational resources.</p>
+    <h2 id="sites">Research and Writing</h2>
     <div class="site-grid">
       <a class="site-card" href="https://schur.microprediction.org"><span class="nm">schur</span><span class="sub">Schur portfolios</span></a>
-      <a class="site-card" href="https://mechanisms.microprediction.org"><span class="nm">mechanisms</span><span class="sub">markets &amp; scoring rules</span></a>
-      <a class="site-card" href="https://inventory.microprediction.org"><span class="nm">inventory</span><span class="sub">inventory &amp; pricing</span></a>
+      <a class="site-card" href="https://inventory.microprediction.org"><span class="nm">trading theory</span><span class="sub">inventory &amp; pricing</span></a>
       <a class="site-card" href="https://conformalprediction.net"><span class="nm">conformal</span><span class="sub">conformalprediction.net</span></a>
-      <a class="site-card" href="https://book.microprediction.org"><span class="nm">book</span><span class="sub">the MIT Press book</span></a>
-      <a class="site-card" href="https://firstdown.microprediction.org"><span class="nm">firstdown</span><span class="sub">NFL first-down strategy</span></a>
-      <a class="site-card" href="https://pitllm.microprediction.org"><span class="nm">pitllm</span><span class="sub">point-in-time LLMs</span></a>
+      <a class="site-card" href="https://book.microprediction.org"><span class="nm">microprediction</span><span class="sub">the MIT Press book</span></a>
+      <a class="site-card" href="https://mechanisms.microprediction.org"><span class="nm">mechanisms</span><span class="sub">markets &amp; scoring rules</span></a>
       <a class="site-card" href="https://brownianbandit.microprediction.org"><span class="nm">brownianbandit</span><span class="sub">budgeted Brownian races</span></a>
       <a class="site-card" href="https://github.com/microprediction/browniansearch"><span class="nm">browniansearch</span><span class="sub">few-shot search on Brownian paths</span></a>
+      <a class="site-card" href="https://kinetics.microprediction.org"><span class="nm">kinetics</span><span class="sub">kinetic surrogates</span></a>
+      <a class="site-card" href="https://firstdown.microprediction.org"><span class="nm">firstdown</span><span class="sub">NFL first-down strategy</span></a>
+      <a class="site-card" href="https://economics.microprediction.org"><span class="nm">economics</span><span class="sub">economics of AI production</span></a>
+    </div>
+
+    <h2 id="interests">Interests &amp; Fun</h2>
+    <div class="site-grid interests">
+      <a class="site-card" href="https://springtheory.microprediction.org"><span class="nm">springtheory</span><span class="sub">estimation as springs</span></a>
+      <a class="site-card" href="https://pitllm.microprediction.org"><span class="nm">pitllm</span><span class="sub">point-in-time LLMs</span></a>
+      <a class="site-card" href="https://latentreasoning.net"><span class="nm">latent reasoning</span><span class="sub">latentreasoning.net</span></a>
+      <a class="site-card" href="https://pure.microprediction.org"><span class="nm">pure</span><span class="sub">useless pure math, vindicated</span></a>
+      <a class="site-card" href="https://dumbphilosophy.com"><span class="nm">philosophy</span><span class="sub">dumbphilosophy.com</span></a>
     </div>
   </main>
 
@@ -222,10 +328,10 @@
         svg.classList.add('dimmed');
         node.classList.add('lit');
         edges.forEach(e => {
-          const [a, b] = e.dataset.n.split(',');
-          if (a === name || b === name) {
+          const ns = e.dataset.n.split(',');
+          if (ns.includes(name)) {
             e.classList.add('lit');
-            svg.querySelector(`.node[data-n="${a === name ? b : a}"]`)?.classList.add('lit');
+            ns.forEach(m => svg.querySelector(`.node[data-n="${m}"]`)?.classList.add('lit'));
           }
         });
       });
