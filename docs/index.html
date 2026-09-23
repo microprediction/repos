@@ -18,6 +18,10 @@
     .node.core rect { fill: #4a3aff; }
     .node.core text { fill: #fff; }
     .node.small text { font-size: 12.5px; }
+    .node.tiny text { font-size: 10.5px; }
+    .grp { fill: none; stroke: #4a3aff; stroke-opacity: .35; stroke-dasharray: 4 4; }
+    .grp-label { font: italic 10px system-ui, sans-serif; fill: #8a84c9; text-anchor: middle; }
+    svg.dimmed .grp, svg.dimmed .grp-label { opacity: 0.18; }
     .node.ext rect { fill: #f4f4f4; stroke: #9a9a9a; stroke-dasharray: 5 4; stroke-width: 1.2; }
     .node.ext text { fill: #555; }
     .node text { font: 600 15px system-ui, sans-serif; fill: #2b2350; text-anchor: middle; pointer-events: none; }
@@ -55,7 +59,7 @@
     <p class="lead">A collection of tiny, dependency free Python and Javascript packages. Some novel. Some SOTA.</p>
 
     <div class="map-wrap">
-    <svg class="repo-map" id="map" viewBox="0 22 1000 412" xmlns="http://www.w3.org/2000/svg">
+    <svg class="repo-map" id="map" viewBox="0 22 1000 472" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
           <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a3aff"/>
@@ -68,18 +72,20 @@
       <path class="edge" data-n="allocation,precise"   d="M 692 202 C 675 165, 648 138, 614 100"/>
       
       <path class="edge plays" data-n="precise,skaters" d="M 252 245 C 350 287, 500 287, 616 242"/>
-      <text class="edge-label" x="435" y="298">volatility estimation</text>
+      <text class="edge-label" x="278" y="291">volatility estimation</text>
+
+      <path class="edge" data-n="winning,mvtnormfast,mlogitfast,rprobitfast,MultinomialProbit,GMRFExtremes,FactorMvNormalCDF" d="M 457 263 L 457 292"/>
 
       <!-- edges: plays well with -->
       <path class="edge" data-n="skaters,ice-skaters" d="M 152 263 L 140 294"/>
       <path class="edge" data-n="skaters,prophet-laplace" d="M 196 263 L 216 294"/>
-      <path class="edge plays" data-n="ice-skaters,river" d="M 140 334 L 160 368"/>
-      <path class="edge plays" data-n="prophet-laplace,prophet" d="M 244 334 L 300 368"/>
-      <path class="edge plays" data-n="precise,sklearn"  d="M 715 263 L 752 368"/>
+      <path class="edge plays" data-n="ice-skaters,river" d="M 140 334 L 160 428"/>
+      <path class="edge plays" data-n="prophet-laplace,prophet" d="M 244 334 L 300 428"/>
+      <path class="edge plays" data-n="precise,sklearn"  d="M 715 263 L 752 428"/>
       <path class="edge plays" data-n="precise,randomcov" d="M 662 263 L 656 298"/>
       
-      <path class="edge plays" data-n="allocation,skfolio" d="M 585 98 L 585 368"/>
-      <path class="edge plays" data-n="humpday,optuna"     d="M 918 263 L 922 368"/>
+      <path class="edge plays" data-n="allocation,skfolio" d="M 585 98 L 585 428"/>
+      <path class="edge plays" data-n="humpday,optuna"     d="M 918 263 L 922 428"/>
 
       <!-- applications row -->
       <g class="node" data-n="timemachines">
@@ -140,6 +146,47 @@
         </a>
       </g>
 
+      <!-- downstream of winning: R ports (left), Julia packages (right) -->
+      <rect class="grp" x="337" y="294" width="244" height="120" rx="10"/>
+      <text class="grp-label" x="398" y="410">R</text>
+      <text class="grp-label" x="519" y="410">Julia</text>
+      <g class="node small tiny" data-n="mvtnormfast">
+        <a href="https://github.com/microprediction/winning/tree/main/r/mvtnormfast">
+          <rect x="342" y="300" width="112" height="28" rx="7"/>
+          <text x="398" y="318">mvtnormfast</text>
+        </a>
+      </g>
+      <g class="node small tiny" data-n="mlogitfast">
+        <a href="https://github.com/microprediction/winning/tree/main/r/mlogitfast">
+          <rect x="342" y="334" width="112" height="28" rx="7"/>
+          <text x="398" y="352">mlogitfast</text>
+        </a>
+      </g>
+      <g class="node small tiny" data-n="rprobitfast">
+        <a href="https://github.com/microprediction/winning/tree/main/r/rprobitfast">
+          <rect x="342" y="368" width="112" height="28" rx="7"/>
+          <text x="398" y="386">rprobitfast</text>
+        </a>
+      </g>
+      <g class="node small tiny" data-n="MultinomialProbit">
+        <a href="https://github.com/microprediction/winning/tree/main/julia/MultinomialProbit">
+          <rect x="460" y="300" width="118" height="28" rx="7"/>
+          <text x="519" y="318">MultinomialProbit</text>
+        </a>
+      </g>
+      <g class="node small tiny" data-n="GMRFExtremes">
+        <a href="https://github.com/microprediction/winning/tree/main/julia/GMRFExtremes">
+          <rect x="460" y="334" width="118" height="28" rx="7"/>
+          <text x="519" y="352">GMRFExtremes</text>
+        </a>
+      </g>
+      <g class="node small tiny" data-n="FactorMvNormalCDF">
+        <a href="https://github.com/microprediction/winning/tree/main/julia/FactorMvNormalCDF">
+          <rect x="460" y="368" width="118" height="28" rx="7"/>
+          <text x="519" y="386">FactorMvNormalCDF</text>
+        </a>
+      </g>
+
       <!-- externals row -->
       <g class="node small" data-n="randomcov">
         <a href="https://randomcov.microprediction.org/">
@@ -150,37 +197,37 @@
 
       <g class="node ext" data-n="river">
         <a href="https://riverml.xyz/">
-          <rect x="85" y="370" width="150" height="46"/>
-          <text x="160" y="390">river</text>
-          <text class="sub" x="160" y="407">online ML</text>
+          <rect x="85" y="430" width="150" height="46"/>
+          <text x="160" y="450">river</text>
+          <text class="sub" x="160" y="467">online ML</text>
         </a>
       </g>
       <g class="node ext" data-n="prophet">
         <a href="https://facebook.github.io/prophet/">
-          <rect x="248" y="370" width="150" height="46"/>
-          <text x="323" y="390">prophet</text>
-          <text class="sub" x="323" y="407">calibrated by skaters</text>
+          <rect x="248" y="430" width="150" height="46"/>
+          <text x="323" y="450">prophet</text>
+          <text class="sub" x="323" y="467">calibrated by skaters</text>
         </a>
       </g>
       <g class="node ext" data-n="skfolio">
         <a href="https://skfolio.org/">
-          <rect x="510" y="370" width="150" height="46"/>
-          <text x="585" y="390">skfolio</text>
-          <text class="sub" x="585" y="407">portfolio construction</text>
+          <rect x="510" y="430" width="150" height="46"/>
+          <text x="585" y="450">skfolio</text>
+          <text class="sub" x="585" y="467">portfolio construction</text>
         </a>
       </g>
       <g class="node ext" data-n="sklearn">
         <a href="https://scikit-learn.org/">
-          <rect x="690" y="370" width="150" height="46"/>
-          <text x="765" y="390">scikit-learn</text>
-          <text class="sub" x="765" y="407">estimator API</text>
+          <rect x="690" y="430" width="150" height="46"/>
+          <text x="765" y="450">scikit-learn</text>
+          <text class="sub" x="765" y="467">estimator API</text>
         </a>
       </g>
       <g class="node ext" data-n="optuna">
         <a href="https://optuna.org/">
-          <rect x="848" y="370" width="150" height="46"/>
-          <text x="923" y="390">optuna</text>
-          <text class="sub" x="923" y="407">raced in benchmarks</text>
+          <rect x="848" y="430" width="150" height="46"/>
+          <text x="923" y="450">optuna</text>
+          <text class="sub" x="923" y="467">raced in benchmarks</text>
         </a>
       </g>
     </svg>
@@ -236,10 +283,10 @@
         svg.classList.add('dimmed');
         node.classList.add('lit');
         edges.forEach(e => {
-          const [a, b] = e.dataset.n.split(',');
-          if (a === name || b === name) {
+          const ns = e.dataset.n.split(',');
+          if (ns.includes(name)) {
             e.classList.add('lit');
-            svg.querySelector(`.node[data-n="${a === name ? b : a}"]`)?.classList.add('lit');
+            ns.forEach(m => svg.querySelector(`.node[data-n="${m}"]`)?.classList.add('lit'));
           }
         });
       });
