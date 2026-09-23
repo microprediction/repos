@@ -79,14 +79,12 @@
       <path class="edge" data-n="fastrace,winning" d="M 540 184 L 540 203"/>
 
       <!-- edges: plays well with -->
-      <path class="edge plays" data-n="precise,skaters" d="M 272 245 C 380 290, 680 290, 778 242"/>
-      <text class="edge-label" x="365" y="249">volatility estimation</text>
       <path class="edge plays" data-n="ice-skaters,river" d="M 72 332 L 80 428"/>
       <path class="edge plays" data-n="prophet-laplace,prophet" d="M 200 332 L 235 428"/>
       <path class="edge plays" data-n="humpday,allocation" d="M 535 104 L 618 76"/>
       <path class="edge plays" data-n="allocation,skfolio" d="M 780 69 L 828 69"/>
-      <path class="edge plays" data-n="precise,randomcov" d="M 832 263 L 826 298"/>
-      <path class="edge plays" data-n="precise,sklearn"  d="M 900 263 L 915 428"/>
+      <path class="edge plays" data-n="precise,randomcov" d="M 790 205 L 756 176"/>
+      <path class="edge plays" data-n="precise,sklearn"  d="M 905 203 L 910 176"/>
 
       <!-- top row -->
       <g class="node" data-n="timemachines">
@@ -171,50 +169,73 @@
 
       <!-- winning: R ports (left), Julia packages (right) -->
       <rect class="grp" x="418" y="294" width="244" height="120" rx="10"/>
-      <text class="grp-label" x="479" y="410">R</text>
-      <text class="grp-label" x="600" y="410">Julia</text>
+      <text class="grp-label" x="482" y="410">Julia</text>
+      <text class="grp-label" x="603" y="410">R</text>
       <g class="node small tiny" data-n="mvtnormfast">
         <a href="https://github.com/microprediction/winning/tree/main/r/mvtnormfast">
-          <rect x="423" y="300" width="112" height="28" rx="7"/>
-          <text x="479" y="318">mvtnormfast</text>
+          <rect x="547" y="300" width="112" height="28" rx="7"/>
+          <text x="603" y="318">mvtnormfast</text>
         </a>
       </g>
       <g class="node small tiny" data-n="mlogitfast">
         <a href="https://github.com/microprediction/winning/tree/main/r/mlogitfast">
-          <rect x="423" y="334" width="112" height="28" rx="7"/>
-          <text x="479" y="352">mlogitfast</text>
+          <rect x="547" y="334" width="112" height="28" rx="7"/>
+          <text x="603" y="352">mlogitfast</text>
         </a>
       </g>
       <g class="node small tiny" data-n="rprobitfast">
         <a href="https://github.com/microprediction/winning/tree/main/r/rprobitfast">
-          <rect x="423" y="368" width="112" height="28" rx="7"/>
-          <text x="479" y="386">rprobitfast</text>
+          <rect x="547" y="368" width="112" height="28" rx="7"/>
+          <text x="603" y="386">rprobitfast</text>
         </a>
       </g>
       <g class="node small tiny" data-n="MultinomialProbit">
         <a href="https://github.com/microprediction/winning/tree/main/julia/MultinomialProbit">
-          <rect x="541" y="300" width="118" height="28" rx="7"/>
-          <text x="600" y="318">MultinomialProbit</text>
+          <rect x="423" y="300" width="118" height="28" rx="7"/>
+          <text x="482" y="318">MultinomialProbit</text>
         </a>
       </g>
       <g class="node small tiny" data-n="GMRFExtremes">
         <a href="https://github.com/microprediction/winning/tree/main/julia/GMRFExtremes">
-          <rect x="541" y="334" width="118" height="28" rx="7"/>
-          <text x="600" y="352">GMRFExtremes</text>
+          <rect x="423" y="334" width="118" height="28" rx="7"/>
+          <text x="482" y="352">GMRFExtremes</text>
         </a>
       </g>
       <g class="node small tiny" data-n="FactorMvNormalCDF">
         <a href="https://github.com/microprediction/winning/tree/main/julia/FactorMvNormalCDF">
-          <rect x="541" y="368" width="118" height="28" rx="7"/>
-          <text x="600" y="386">FactorMvNormalCDF</text>
+          <rect x="423" y="368" width="118" height="28" rx="7"/>
+          <text x="482" y="386">FactorMvNormalCDF</text>
+        </a>
+      </g>
+
+      <!-- R packages the ports drop into -->
+      <path class="edge plays" data-n="mvtnormfast,mvtnorm" d="M 659 314 L 682 314"/>
+      <g class="node ext small tiny" data-n="mvtnorm">
+        <a href="https://cran.r-project.org/package=mvtnorm">
+          <rect x="684" y="300" width="76" height="28" rx="7"/>
+          <text x="722" y="318">mvtnorm</text>
+        </a>
+      </g>
+      <path class="edge plays" data-n="mlogitfast,mlogit" d="M 659 348 L 682 348"/>
+      <g class="node ext small tiny" data-n="mlogit">
+        <a href="https://cran.r-project.org/package=mlogit">
+          <rect x="684" y="334" width="76" height="28" rx="7"/>
+          <text x="722" y="352">mlogit</text>
+        </a>
+      </g>
+      <path class="edge plays" data-n="rprobitfast,Rprobit" d="M 659 382 L 682 382"/>
+      <g class="node ext small tiny" data-n="Rprobit">
+        <a href="https://github.com/dbauer72/Rprobit_old">
+          <rect x="684" y="368" width="76" height="28" rx="7"/>
+          <text x="722" y="386">Rprobit</text>
         </a>
       </g>
 
       <!-- precise -->
       <g class="node small" data-n="randomcov">
         <a href="https://randomcov.microprediction.org/">
-          <rect x="774" y="298" width="104" height="34" rx="8"/>
-          <text x="826" y="321">randomcov</text>
+          <rect x="652" y="150" width="104" height="30" rx="8"/>
+          <text x="704" y="171">randomcov</text>
         </a>
       </g>
 
@@ -242,9 +263,9 @@
       </g>
       <g class="node ext" data-n="sklearn">
         <a href="https://scikit-learn.org/">
-          <rect x="840" y="430" width="150" height="46"/>
-          <text x="915" y="450">scikit-learn</text>
-          <text class="sub" x="915" y="467">estimator API</text>
+          <rect x="845" y="128" width="150" height="46"/>
+          <text x="920" y="148">scikit-learn</text>
+          <text class="sub" x="920" y="165">estimator API</text>
         </a>
       </g>
     </svg>
