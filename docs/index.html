@@ -18,6 +18,10 @@
     .badge-line { display: block; margin: 14px 0 0; }
     .badge-line img { display: block; max-width: 100%; height: auto; }
     .badge-line a:hover { text-decoration: none; }
+    /* the badge's own wording reads like a GitHub product; say whose award
+       it is, since the laurel and the name do not */
+    .badge-src { display: block; margin-top: 5px; font-size: 0.78rem;
+      color: var(--muted); }
     svg.repo-map { width: 100%; height: auto; display: block; }
     .node rect { fill: #ece9ff; stroke: #4a3aff; stroke-width: 1.5; rx: 10; cursor: pointer; }
     .node.core rect { fill: #4a3aff; }
@@ -329,6 +333,7 @@
              alt="star-history.com: Top Committer, 2026"
              width="260" height="64" loading="lazy" />
       </a>
+      <span class="badge-src">Top Committer 2026 &middot; star-history.com</span>
     </span>
   </footer>
 
