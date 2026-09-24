@@ -13,6 +13,11 @@
   <link rel="stylesheet" href="./academic.css" />
   <style>
     .map-wrap { margin: 26px 0; }
+    /* star-history badge: its own line under the footer links, and never
+       wider than the viewport on a phone (the svg is 260x64) */
+    .badge-line { display: block; margin: 14px 0 0; }
+    .badge-line img { display: block; max-width: 100%; height: auto; }
+    .badge-line a:hover { text-decoration: none; }
     svg.repo-map { width: 100%; height: auto; display: block; }
     .node rect { fill: #ece9ff; stroke: #4a3aff; stroke-width: 1.5; rx: 10; cursor: pointer; }
     .node.core rect { fill: #4a3aff; }
@@ -317,6 +322,14 @@
     <a href="https://allocation.microprediction.org">allocation</a>,
     <a href="https://github.com/microprediction/precise">precise</a>,
     <a href="https://humpday.microprediction.org">humpday</a>.
+    <span class="badge-line">
+      <a href="https://www.star-history.com/microprediction"
+         title="Ranked among GitHub's 20,000 most-followed users and top contributors to its 20,000 most-starred repositories, by public commit-contribution count.">
+        <img src="https://api.star-history.com/badge?user=microprediction&amp;year=2026"
+             alt="star-history.com: Top Committer, 2026"
+             width="260" height="64" loading="lazy" />
+      </a>
+    </span>
   </footer>
 
   <script>
