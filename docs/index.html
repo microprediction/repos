@@ -13,17 +13,19 @@
   <link rel="stylesheet" href="./academic.css" />
   <style>
     .map-wrap { margin: 26px 0; }
-    /* star-history badge, small in the header: the svg is 260x64 and its
-       dark ground sits on the dark bar, so only the ribbon and the rank
-       read at this size -- which is the point. The link title names the
-       awarding site, since the badge's own wording does not. Hidden on a
-       phone, where the nav has no room to spare. */
-    .site-header .badge-link { display: flex; align-items: center; }
-    .site-header .badge-link:hover { text-decoration: none; }
-    .site-header .badge-link img { height: 30px; width: auto; display: block;
-      opacity: 0.92; transition: opacity .15s; }
-    .site-header .badge-link:hover img { opacity: 1; }
-    @media (max-width: 640px) { .site-header .badge-link { display: none; } }
+    /* star-history badge: on the white, level with the title, at a size
+       where the wording actually reads -- in the dark header at 30px only
+       the ribbon and the rank carried. The svg is 260x64, so 50px tall is
+       about 203 wide. The link title names the awarding site, since the
+       badge's own wording does not. It drops below the title on a phone
+       rather than squeezing it. */
+    main > .badge-link { float: right; margin: 2px 0 12px 24px; }
+    main > .badge-link:hover { text-decoration: none; }
+    main > .badge-link img { height: 50px; width: auto; display: block; }
+    @media (max-width: 720px) {
+      main > .badge-link { float: none; margin: 0 0 14px; }
+      main > .badge-link img { height: 42px; }
+    }
     svg.repo-map { width: 100%; height: auto; display: block; }
     .node rect { fill: #ece9ff; stroke: #4a3aff; stroke-width: 1.5; rx: 10; cursor: pointer; }
     .node.core rect { fill: #4a3aff; }
@@ -65,16 +67,16 @@
       <nav>
         <a href="https://www.microprediction.org/">microprediction.org</a>
         <a href="https://github.com/microprediction">GitHub</a>
-        <a class="badge-link" href="https://www.star-history.com/microprediction"
-           title="star-history.com, Top Committer 2026: ranked among GitHub's 20,000 most-followed users and top contributors to its 20,000 most-starred repositories, by public commit-contribution count. Not a GitHub award.">
-          <img src="https://api.star-history.com/badge?user=microprediction&amp;year=2026"
-               alt="star-history.com: Top Committer 2026" width="260" height="64" />
-        </a>
       </nav>
     </div>
   </header>
 
   <main>
+    <a class="badge-link" href="https://www.star-history.com/microprediction"
+       title="star-history.com, Top Committer 2026: ranked among GitHub's 20,000 most-followed users and top contributors to its 20,000 most-starred repositories, by public commit-contribution count. Not a GitHub award.">
+      <img src="https://api.star-history.com/badge?user=microprediction&amp;year=2026"
+           alt="star-history.com: Top Committer 2026" width="260" height="64" />
+    </a>
     <h1>The microprediction stack</h1>
     <p class="lead">Tiny fast dependency-free packages. <em>Winning</em> and <em>Skaters</em> are SOTA.</p>
 
