@@ -17,7 +17,7 @@
         {
             "guid": "precise",
             "name": "precise",
-            "description": "Online covariance and correlation estimation, and portfolio construction from those estimates, in pure Python. It updates estimates one observation at a time, which suits streaming and live use, and it carries many published estimators (shrinkage, factor and ensemble methods) behind one interface so they can be compared on equal terms.\n\nAbout 137,000 all-time downloads from PyPI.",
+            "description": "Online covariance and correlation estimation in pure Python. It updates estimates one observation at a time, which suits streaming and live use, and it carries many published estimators (shrinkage, factor and ensemble methods) behind one interface so they can be compared on equal terms.\n\nAbout 137,000 all-time downloads from PyPI.",
             "webpageUrl": {
                 "url": "https://github.com/microprediction/precise"
             },
