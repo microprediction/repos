@@ -1,0 +1,155 @@
+{
+    "$schema": "https://fundingjson.org/schema/v1.1.0.json",
+    "version": "v1.0.0",
+    "entity": {
+        "type": "individual",
+        "role": "owner",
+        "name": "Peter Cotton",
+        "email": "peter.cotton@microprediction.com",
+        "phone": "",
+        "description": "I write and maintain open-source libraries for forecasting, probability and optimisation, published under the MIT licence at github.com/microprediction. The five below have been downloaded about 580,000 times from PyPI, and earlier libraries of mine (the microprediction client and muid, an identifier library) about 1.2 million more.\n\nI have worked in quantitative finance and data science for twenty-five years: I led data science at buy-side and sell-side firms, applied control theory to OTC trading at JP Morgan, and managed CDO pricing at Morgan Stanley. I co-founded Benchmark Solutions, acquired by Bloomberg. The libraries below come out of that work and out of public research, including a paper in the SIAM Journal on Financial Mathematics (2021) on inferring ability from winning probabilities.\n\nThe projects are maintained by me, mostly alone. Funding would pay for steady maintenance: keeping them current with Python and NumPy releases, answering issues, keeping the cross-language ports in agreement, and continuing the validation work that checks each method against independent reference implementations.",
+        "webpageUrl": {
+            "url": "https://repos.microprediction.org",
+            "wellKnown": ""
+        }
+    },
+    "projects": [
+        {
+            "guid": "precise",
+            "name": "precise",
+            "description": "Online covariance and correlation estimation, and portfolio construction from those estimates, in pure Python. It updates estimates one observation at a time, which suits streaming and live use, and it carries many published estimators (shrinkage, factor and ensemble methods) behind one interface so they can be compared on equal terms.\n\nAbout 137,000 all-time downloads from PyPI.",
+            "webpageUrl": {
+                "url": "https://github.com/microprediction/precise"
+            },
+            "repositoryUrl": {
+                "url": "https://github.com/microprediction/precise",
+                "wellKnown": "https://github.com/microprediction/precise/blob/main/.well-known/funding-manifest-urls"
+            },
+            "licenses": [
+                "spdx:MIT"
+            ],
+            "tags": [
+                "statistics",
+                "covariance",
+                "portfolio",
+                "finance",
+                "online-learning",
+                "python"
+            ]
+        },
+        {
+            "guid": "humpday",
+            "name": "humpday",
+            "description": "A library and benchmark of derivative-free (black-box) optimisers in Python and JavaScript, with one interface across 23 methods. Each port is checked against an established reference implementation (scipy, PDFO, Py-BOBYQA, cmaes, scikit-optimize) by an automated gate that compares results at equal evaluation budgets, and the Python and JavaScript versions replay recorded trajectories to check they agree.\n\nAbout 98,000 all-time downloads from PyPI.",
+            "webpageUrl": {
+                "url": "https://github.com/microprediction/humpday"
+            },
+            "repositoryUrl": {
+                "url": "https://github.com/microprediction/humpday",
+                "wellKnown": "https://github.com/microprediction/humpday/blob/main/.well-known/funding-manifest-urls"
+            },
+            "licenses": [
+                "spdx:MIT"
+            ],
+            "tags": [
+                "optimization",
+                "derivative-free",
+                "benchmark",
+                "python",
+                "javascript",
+                "scientific-computing"
+            ]
+        },
+        {
+            "guid": "winning",
+            "name": "winning",
+            "description": "Fast, accurate probabilities for races and contests with correlated performances: who wins, finishing positions, and the inverse problem of recovering abilities from observed probabilities. The same engine computes multinomial-probit choice shares and drives a ratings library for sports and games. Ports in JavaScript, R, Julia and Rust are kept in numerical agreement with the Python reference.\n\nAbout 119,000 all-time downloads from PyPI.",
+            "webpageUrl": {
+                "url": "https://github.com/microprediction/winning"
+            },
+            "repositoryUrl": {
+                "url": "https://github.com/microprediction/winning",
+                "wellKnown": "https://github.com/microprediction/winning/blob/main/.well-known/funding-manifest-urls"
+            },
+            "licenses": [
+                "spdx:MIT"
+            ],
+            "tags": [
+                "statistics",
+                "econometrics",
+                "probability",
+                "ratings",
+                "discrete-choice",
+                "python"
+            ]
+        },
+        {
+            "guid": "skaters",
+            "name": "skaters",
+            "description": "Fast online univariate distributional forecasting. Its forecaster returns a full predictive distribution at each step rather than a point, and is evaluated by held-out log-likelihood on thousands of economic time series against standard methods (ARIMA, ETS, GARCH and others). Ports in Python, JavaScript, R, Julia and Rust match the reference to within 1e-6.\n\nAbout 21,000 all-time downloads from PyPI.",
+            "webpageUrl": {
+                "url": "https://github.com/microprediction/skaters"
+            },
+            "repositoryUrl": {
+                "url": "https://github.com/microprediction/skaters",
+                "wellKnown": "https://github.com/microprediction/skaters/blob/main/.well-known/funding-manifest-urls"
+            },
+            "licenses": [
+                "spdx:MIT"
+            ],
+            "tags": [
+                "forecasting",
+                "time-series",
+                "statistics",
+                "online-learning",
+                "python"
+            ]
+        },
+        {
+            "guid": "timemachines",
+            "name": "timemachines",
+            "description": "Streaming decision layers built on the skaters forecasters, starting with anomaly detection: it turns each forecast into a calibrated p-value, so an alarm threshold is a false-alarm rate rather than a tuned constant.\n\nAbout 202,000 all-time downloads from PyPI.",
+            "webpageUrl": {
+                "url": "https://github.com/microprediction/timemachines"
+            },
+            "repositoryUrl": {
+                "url": "https://github.com/microprediction/timemachines",
+                "wellKnown": "https://github.com/microprediction/timemachines/blob/main/.well-known/funding-manifest-urls"
+            },
+            "licenses": [
+                "spdx:MIT"
+            ],
+            "tags": [
+                "forecasting",
+                "time-series",
+                "anomaly-detection",
+                "python"
+            ]
+        }
+    ],
+    "funding": {
+        "channels": [
+            {
+                "guid": "bank",
+                "type": "bank",
+                "address": "",
+                "description": "Direct bank transfer. Please email for details."
+            }
+        ],
+        "plans": [
+            {
+                "guid": "maintenance-yearly",
+                "status": "active",
+                "name": "Maintenance and development",
+                "description": "Part-time maintenance and development across the projects above: releases for new Python and NumPy versions, issues and pull requests, keeping the cross-language ports in agreement, and the validation work against reference implementations.",
+                "amount": 50000,
+                "currency": "USD",
+                "frequency": "yearly",
+                "channels": [
+                    "bank"
+                ]
+            }
+        ],
+        "history": []
+    }
+}
