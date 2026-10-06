@@ -84,6 +84,7 @@ table th { background: #efeefa; font-weight: 600; }
 table td code { font-size: 0.86em; }
 table td.num { text-align: right; font-variant-numeric: tabular-nums; }
 
+footer .support { margin: 0 0 10px; }
 footer { max-width: 980px; margin: 40px auto 24px; padding: 16px 24px; font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--border); }
 
 /* --- buttons --- */
